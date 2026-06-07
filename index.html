@@ -2,13 +2,106 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>PDF Dump</title>
+<title>VAG - Datenverzeichnis</title>
 <style>
-body{font-family:Arial,sans-serif;margin:2rem;}h2{margin-top:2rem;}ul{list-style:none;padding-left:0;}li{margin:0.3rem 0;}a{text-decoration:none;color:#0066cc;}a:hover{text-decoration:underline;}</style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+:root{
+  --bg:#fafafa;
+  --primary:#555555;
+  --accent:#333333;
+  --text:#111;
+  --heading-font:'Montserrat',sans-serif;
+  --body-font:'Montserrat',sans-serif;
+}
+body{
+  font-family:var(--body-font);
+  margin:2rem;
+  background:var(--bg);
+  color:#333;
+  line-height:1.6;
+}
+.container{
+  max-width:960px;
+  margin:0 auto;
+  padding:1rem;
+  background:white;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  border-radius:8px;
+  text-align:center;
+}
+h1{
+  font-family:var(--heading-font);
+  font-size:2.5rem;
+  color:var(--text);
+  margin-bottom:1rem;
+  border-bottom:2px solid var(--primary);
+  padding-bottom:0.5rem;
+}
+h2{
+  font-family:var(--heading-font);
+  font-size:2rem;
+  color:var(--primary);
+  margin-top:2rem;
+  margin-bottom:0.5rem;
+}
+h3{
+  font-family:var(--heading-font);
+  font-size:1.5rem;
+  color:var(--accent);
+  margin-top:1.5rem;
+  margin-bottom:0.3rem;
+}
+ul{
+  list-style:none;
+  padding-left:0;
+  column-count:2;
+  column-gap:2rem;
+}
+li{
+  margin:0.3rem 0;
+  transition:transform 0.2s,background 0.2s;
+}
+li:hover{
+  background:rgba(0,102,204,0.05);
+  transform:translateX(4px);
+}
+a{
+  text-decoration:none;
+  color:var(--primary);
+}
+a:hover{
+  text-decoration:underline;
+}
+.top-bar input{
+  border:1px solid #ccc;
+  border-radius:4px;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+/* Animation für Titel, Überschriften und Listen */
+h1, h2, h3, ul, li{opacity:0;animation:fadeIn 0.6s ease forwards;}
+/* leichte Verzögerung für Listenpunkte */
+li{animation-delay:0.1s;}
+.loop-banner .inner span{display:inline-block;padding:0 2rem;}
+@keyframes marquee{0%{transform:translateX(100%);}100%{transform:translateX(-100%);}}
+.floating-words{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;}
+.floating-words span{position:absolute;font-size:1.5rem;color:rgba(0,0,0,0.07);animation:float 12s linear infinite;}
+/* Random start positions via nth-child */
+.floating-words span:nth-child(1){left:10%;top:80%;animation-delay:0s;}
+.floating-words span:nth-child(2){left:30%;top:20%;animation-delay:3s;}
+.floating-words span:nth-child(3){left:60%;top:70%;animation-delay:6s;}
+.floating-words span:nth-child(4){left:80%;top:30%;animation-delay:9s;}
+.floating-words span:nth-child(5){left:20%;top:50%;animation-delay:2s;}
+.floating-words span:nth-child(6){left:70%;top:10%;animation-delay:5s;}
+
+@keyframes float{0%{transform:translateY(0) scale(1);}25%{transform:translateY(-20px) scale(1.05);}50%{transform:translateY(0) scale(1);}75%{transform:translateY(20px) scale(0.95);}100%{transform:translateY(0) scale(1);}
+footer{font-size:0.9rem;color:#c2c2c2;text-align:center;margin-top:2rem;padding:0.5rem 0;background:#f7f7f7;border-top:1px solid #ddd;}
+</style>
 </head>
 <body>
+<div class="floating-words"><span>BBS</span><span>AUDI</span><span>VW</span><span>1.8T</span><span>partslink24</span><span>erWin</span></div>
+<div class="container">
 <div class="top-bar" style="display:flex;align-items:center;margin-bottom:1rem;"><input type="text" id="search" placeholder="Suche..." oninput="filterList()" style="flex:1;padding:0.3rem;"/></div>
-<h1>PDF Dump</h1>
+<h1>VAG - Datenverzeichnis</h1>
 <p>Alle PDFs, sortiert nach Kategorie und Zeichenlänge.</p>
 <h2>DATENKARTE</h2>
 <ul>
@@ -34,6 +127,7 @@ body{font-family:Arial,sans-serif;margin:2rem;}h2{margin-top:2rem;}ul{list-style
 <li><a href='3%20TT%20erWin\APX%20Leitfaden.pdf'>APX Leitfaden.pdf</a></li>
 <li><a href='3%20TT%20erWin\APX%20Zündanlage.pdf'>APX Zündanlage.pdf</a></li>
 </ul>
+<div class="outer-section audi">
 <h2>AUDI</h2>
 <ul>
 <li><a href='1%20AUDI%20erWin\A4B5%20RNS.pdf'>A4B5 RNS.pdf</a></li>
@@ -51,7 +145,8 @@ body{font-family:Arial,sans-serif;margin:2rem;}h2{margin-top:2rem;}ul{list-style
 <li><a href='1%20AUDI%20erWin\A4%20Innenraum%20Leitfaden.pdf'>A4 Innenraum Leitfaden.pdf</a></li>
 <li><a href='1%20AUDI%20erWin\A4%20Karosserie%20Leitfaden.pdf'>A4 Karosserie Leitfaden.pdf</a></li>
 <li><a href='1%20AUDI%20erWin\A4B5%20Instandhaltung%20genau%20genommen.pdf'>A4B5 Instandhaltung genau genommen.pdf</a></li>
-</ul>
+</ul></div>
+<div class="outer-section vw">
 <h2>VW</h2>
 <ul>
 <li><a href='2%20VW%20erWin\Golf%204%20Radio.pdf'>Golf 4 Radio.pdf</a></li>
@@ -75,22 +170,62 @@ body{font-family:Arial,sans-serif;margin:2rem;}h2{margin-top:2rem;}ul{list-style
 <li><a href='3%20TT%20erWin\TT%20Elektrische%20Anlage%20Eigendiagnose.pdf'>TT Elektrische Anlage Eigendiagnose.pdf</a></li>
 <li><a href='3%20TT%20erWin\TT%20Elektrische%20Anlage%20Allgemeine%20Informationen.pdf'>TT Elektrische Anlage Allgemeine Informationen.pdf</a></li>
 </ul>
-<h2>GOLF</h2>
+<h2>OEM - Ersatzteilkatalog</h2>
+<h3>A4 B5</h3>
 <ul>
-<li><a href='4%20GOLF%204%20TEILE%20PARTSLINK\Volkswagen,%20Golf%20GTI%20Turbo%202002%20WVWZZZ1JZ2W131658,%20Motor,%20105-010%20–%20partslink24%20Kupplung.pdf'>Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Motor, 105-010 – partslink24 Kupplung.pdf</a></li>
-<li><a href='4%20GOLF%204%20TEILE%20PARTSLINK\Volkswagen,%20Golf%20GTI%20Turbo%202002%20WVWZZZ1JZ2W131658,%20Abgasanlage,%20145-050%20–%20partslink24%20Turbo.pdf'>Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Abgasanlage, 145-050 – partslink24 Turbo.pdf</a></li>
-<li><a href='4%20GOLF%204%20TEILE%20PARTSLINK\Volkswagen,%20Golf%20GTI%20Turbo%202002%20WVWZZZ1JZ2W131658,%20Bremse,%20615-025%20–%20partslink24%20Bremse%20Vorne.pdf'>Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Bremse, 615-025 – partslink24 Bremse Vorne.pdf</a></li>
-<li><a href='4%20GOLF%204%20TEILE%20PARTSLINK\Volkswagen,%20Golf%20GTI%20Turbo%202002%20WVWZZZ1JZ2W131658,%20Getriebe,%20300-010%20–%20partslink24%20Getriebeöl.pdf'>Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Getriebe, 300-010 – partslink24 Getriebeöl.pdf</a></li>
-<li><a href='4%20GOLF%204%20TEILE%20PARTSLINK\Volkswagen,%20Golf%20GTI%20Turbo%202002%20WVWZZZ1JZ2W131658,%20Bremse,%20615-060%20–%20partslink24%20Bremse%20Hinten.pdf'>Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Bremse, 615-060 – partslink24 Bremse Hinten.pdf</a></li>
-<li><a href='4%20GOLF%204%20TEILE%20PARTSLINK\Volkswagen,%20Golf%20GTI%20Turbo%202002%20WVWZZZ1JZ2W131658,%20Antriebskühlung,%20121-075%20–%20partslink24%20Kühler.pdf'>Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Antriebskühlung, 121-075 – partslink24 Kühler.pdf</a></li>
-<li><a href='4%20GOLF%204%20TEILE%20PARTSLINK\Volkswagen,%20Golf%20GTI%20Turbo%202002%20WVWZZZ1JZ2W131658,%20Antriebskühlung,%20121-075%20–%20partslink24%20Behälter.pdf'>Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Antriebskühlung, 121-075 – partslink24 Behälter.pdf</a></li>
-<li><a href='4%20GOLF%204%20TEILE%20PARTSLINK\Volkswagen,%20Golf%20GTI%20Turbo%202002%20WVWZZZ1JZ2W131658,%20Klimaanlage_Heizung,%20820-020%20–%20partslink24%20Gehäuse.pdf'>Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Klimaanlage_Heizung, 820-020 – partslink24 Gehäuse.pdf</a></li>
-<li><a href='4%20GOLF%204%20TEILE%20PARTSLINK\Volkswagen,%20Golf%20GTI%20Turbo%202002%20WVWZZZ1JZ2W131658,%20Klimaanlage_Heizung,%20820-010%20–%20partslink24%20Wärmetauscher.pdf'>Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Klimaanlage_Heizung, 820-010 – partslink24 Wärmetauscher.pdf</a></li>
-<li><a href='4%20GOLF%204%20TEILE%20PARTSLINK\Volkswagen,%20Golf%20GTI%20Turbo%202002%20WVWZZZ1JZ2W131658,%20Kraftstoff_%20Luft%20Energieversorgung,%20129-015%20–%20partslink24%20LMM.pdf'>Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Kraftstoff_ Luft Energieversorgung, 129-015 – partslink24 LMM.pdf</a></li>
-<li><a href='4%20GOLF%204%20TEILE%20PARTSLINK\Volkswagen,%20Golf%20GTI%20Turbo%202002%20WVWZZZ1JZ2W131658,%20Kraftstoff_%20Luft%20Energieversorgung,%20129-015%20–%20partslink24%20Service%20Teile.pdf'>Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Kraftstoff_ Luft Energieversorgung, 129-015 – partslink24 Service Teile.pdf</a></li>
+<li><a href='A4 B5\Audi, Audi A4 1,8 1998 WAUZZZ8D..., ZV - partslink24.pdf'>ZV - partslink24.pdf</a></li>
+<li><a href='A4 B5\Audi, Audi A4 1,8 1998 WAUZZZ8D..., LLK - partslink24.pdf'>LLK - partslink24.pdf</a></li>
+<li><a href='A4 B5\Audi, Audi A4 1,8 1998 WAUZZZ8D..., GRA - partslink24.pdf'>GRA - partslink24.pdf</a></li>
+<li><a href='A4 B5\Audi, Audi A4 1,8 1998 WAUZZZ8D..., Airbag - partslink24.pdf'>Airbag - partslink24.pdf</a></li>
+<li><a href='A4 B5\Audi, Audi A4 1,8 1998 WAUZZZ8D..., HA Bremse- partslink24.pdf'>HA Bremse- partslink24.pdf</a></li>
+<li><a href='A4 B5\Audi, Audi A4 1,8 1998 WAUZZZ8D..., Kupplung - partslink24.pdf'>Kupplung - partslink24.pdf</a></li>
+<li><a href='A4 B5\Audi, Audi A4 1,8 1998 WAUZZZ8D..., VA Bremse- partslink24.pdf'>VA Bremse- partslink24.pdf</a></li>
+<li><a href='A4 B5\Audi, Audi A4 1,8 1998 WAUZZZ8D..., Zahnriemen - partslink24.pdf'>Zahnriemen - partslink24.pdf</a></li>
+<li><a href='A4 B5\Audi, Audi A4 1,8 1998 WAUZZZ8D..., Hinterachse - partslink24.pdf'>Hinterachse - partslink24.pdf</a></li>
+<li><a href='A4 B5\Audi, Audi A4 1,8 1998 WAUZZZ8D..., Steuerkette - partslink24.pdf'>Steuerkette - partslink24.pdf</a></li>
+<li><a href='A4 B5\Audi, Audi A4 1,8 1998 WAUZZZ8D..., Zylinderkopf - partslink24.pdf'>Zylinderkopf - partslink24.pdf</a></li>
+<li><a href='A4 B5\Audi, Audi A4 1,8 1998 WAUZZZ8D..., Schließzylinder - partslink24.pdf'>Schließzylinder - partslink24.pdf</a></li>
 </ul>
+<h3>GOLF 4 GTI</h3>
+<ul>
+<li><a href='GOLF 4 GTI\Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Kupplung - partslink24.pdf'>Kupplung - partslink24.pdf</a></li>
+<li><a href='GOLF 4 GTI\Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Zahnriemen - partslink24.pdf'>Zahnriemen - partslink24.pdf</a></li>
+<li><a href='GOLF 4 GTI\Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Steuerkette - partslink24.pdf'>Steuerkette - partslink24.pdf</a></li>
+<li><a href='GOLF 4 GTI\Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Hinterachse - partslink24.pdf'>Hinterachse - partslink24.pdf</a></li>
+<li><a href='GOLF 4 GTI\Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Außenspiegel - partslink24.pdf'>Außenspiegel - partslink24.pdf</a></li>
+<li><a href='GOLF 4 GTI\Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Bremse Vorn LINKS- partslink24.pdf'>Bremse Vorn LINKS- partslink24.pdf</a></li>
+<li><a href='GOLF 4 GTI\Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Bremse Vorn Rechts- partslink24.pdf'>Bremse Vorn Rechts- partslink24.pdf</a></li>
+<li><a href='GOLF 4 GTI\Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Bremse LINKS - partslink24.pdf'>Bremse LINKS - partslink24.pdf</a></li>
+<li><a href='GOLF 4 GTI\Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Bremse RECHTS - partslink24.pdf'>Bremse RECHTS - partslink24.pdf</a></li>
+<li><a href='GOLF 4 GTI\Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Bremse Vorn LINKS- partslink24.pdf'>Bremse Vorn LINKS- partslink24.pdf</a></li>
+<li><a href='GOLF 4 GTI\Volkswagen, Golf GTI Turbo 2002 WVWZZZ1JZ2W131658, Bremse Vorn Rechts- partslink24.pdf'>Bremse Vorn Rechts- partslink24.pdf</a></li>
+</ul>
+<h3>POLO 9N</h3>
+<ul>
+<li><a href='POLO 9N\Volkswagen, Polo 2002 WVWZZZ9NZ2Y1060..., Kupplung - partslink24.pdf'>Kupplung - partslink24.pdf</a></li>
+<li><a href='POLO 9N\Volkswagen, Polo 2002 WVWZZZ9NZ2Y1060..., Bremse LINKS - partslink24.pdf'>Bremse LINKS - partslink24.pdf</a></li>
+<li><a href='POLO 9N\Volkswagen, Polo 2002 WVWZZZ9NZ2Y1060..., Bremse RECHTS - partslink24.pdf'>Bremse RECHTS - partslink24.pdf</a></li>
+<li><a href='POLO 9N\Volkswagen, Polo 2002 WVWZZZ9NZ2Y1060..., HA Fahrwerk - partslink24.pdf'>HA Fahrwerk - partslink24.pdf</a></li>
+<li><a href='POLO 9N\Volkswagen, Polo 2002 WVWZZZ9NZ2Y1060..., VA Fahrwerk - partslink24.pdf'>VA Fahrwerk - partslink24.pdf</a></li>
+<li><a href='POLO 9N\Volkswagen, Polo 2002 WVWZZZ9NZ2Y1060..., Trommelbremse - partslink24.pdf'>Trommelbremse - partslink24.pdf</a></li>
+<li><a href='POLO 9N\Volkswagen, Polo 2002 WVWZZZ9NZ2Y1060..., Vorderachse - partslink24.pdf'>Vorderachse - partslink24.pdf</a></li>
+</ul>
+<h3>TT 8N</h3>
+<ul>
+<li><a href='TT 8N\Audi, Audi TT, 2000 - KGE - partslink24.pdf'>KGE - partslink24.pdf</a></li>
+<li><a href='TT 8N\Audi, Audi TT, 2000 - LLK - partslink24.pdf'>LLK - partslink24.pdf</a></li>
+<li><a href='TT 8N\Audi, Audi TT, 2000 - Krümmer - partslink24.pdf'>Krümmer - partslink24.pdf</a></li>
+<li><a href='TT 8N\Audi, Audi TT, 2000 - Turbolader - partslink24.pdf'>Turbolader - partslink24.pdf</a></li>
+<li><a href='TT 8N\Audi, Audi TT, 2000 - Steuerkette - partslink24.pdf'>Steuerkette - partslink24.pdf</a></li>
+<li><a href='TT 8N\Audi, Audi TT, 2000 - Zylinderkopf - partslink24.pdf'>Zylinderkopf - partslink24.pdf</a></li>
+<li><a href='TT 8N\Audi, Audi TT, 2000 - Leitungsstrang - partslink24.pdf'>Leitungsstrang - partslink24.pdf</a></li>
+<li><a href='TT 8N\Audi, Audi TT, 2000 - Motorabdeckung - partslink24.pdf'>Motorabdeckung - partslink24.pdf</a></li>
+<li><a href='TT 8N\Audi, Audi TT, 2000 - Leitungsstrang Motorraum - partslink24.pdf'>Leitungsstrang Motorraum - partslink24.pdf</a></li>
+</ul>
+</div>
 <script>
-function filterList(){const q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("ul").forEach(u=>{let any=false;u.querySelectorAll("li").forEach(li=>{const t=li.textContent.toLowerCase();const m=t.includes(q);li.style.display=m?"list-item":"none";if(m)any=true});const h=u.previousElementSibling; if(h && h.tagName.startsWith("H")) h.style.display=any?"block":"none";});}
+function filterList(){const q=document.getElementById("search").value.toLowerCase();document.querySelectorAll("ul").forEach(u=>{let any=false;u.querySelectorAll("li").forEach(li=>{const t=li.textContent.toLowerCase();const m=t.includes(q);li.style.display=m?"list-item":"none";if(m)any=true});const h=u.previousElementSibling;if(h && h.tagName.startsWith("H"))h.style.display=any?"block":"none";});}
 </script>
+<footer>Copyright by Manuel</footer>
 </body>
 </html>
